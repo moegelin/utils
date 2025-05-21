@@ -12,5 +12,20 @@ install manually plugins:
 
 SCOPES
 
-bff:
-file[1up-bff]:*/&&!file:*/dist//*&&!file:*/.rush//*&&!file:*/coverage//*&&!file:*/stats.html&&!file:.eslintcache&&!file:*.log&&!file:*.tsbuildinfo&&!file:dev-tools/configurator*/&&!file:common*/&&!file:*/.mangony//*&&!file:*/.rollup.cache//*&&!file:*/junit.xml
+BFF
+file[1up-bff]:*/&&$exclude
+
+BFFsrc
+$BFF&&!file:*/__tests__//*.spec.*&&!file:libs/types//*&&!file:*.md&&!file:*.json&&!file:*.mock*.*
+
+BFF src w/o docs
+$BFFsrc&&!file[1up-bff]:apps/documentation//*
+
+BFF tests
+file:*/__tests__//*.ts||file:*/__tests__//*.tsx
+
+BFF App :: section
+$BFF&&file[1up-bff]:apps/section//*
+
+exclude
+!file:*/dist//*&&!file:*/.rush//*&&!file:*/coverage//*&&!file:*/stats.html&&!file:.eslintcache&&!file:*.log&&!file:*.tsbuildinfo&&!file:dev-tools/configurator*/&&!file:common*/&&!file:*/.mangony//*&&!file:*/.rollup.cache//*&&!file:*/junit.xml&&!file:*/*.tsx.snap&&!file[1up-bff]:apps/meine-welt//*
