@@ -1,0 +1,16 @@
+Setup Intellij
+
+import settings via file or github project (settings repository plugin)
+
+install manually plugins:
+- conventional commit
+- github copilot
+- git toolbox
+- key promoter x
+- string manipulation
+- scala
+
+SCOPES
+
+bff:
+file[1up-bff]:*/&&!file:*/dist//*&&!file:*/.rush//*&&!file:*/coverage//*&&!file:*/stats.html&&!file:.eslintcache&&!file:*.log&&!file:*.tsbuildinfo&&!file:dev-tools/configurator*/&&!file:common*/&&!file:*/.mangony//*&&!file:*/.rollup.cache//*&&!file:*/junit.xml

@@ -1,0 +1,86 @@
+Setup Mac Terminal
+
+
+Steps:
+- make sure to have zsh as default shell (echo $SHELL (bin/zsh))
+- Install Sublime and add it to path to be able to execute "subl"
+	```
+	echo 'export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"' >> ~/.zprofile
+	```
+- install oh my zsh (make sure this was done right via checking zshrc file)
+- Install zsh auto suggestions manually via git clone
+- Install Zoxide
+- install homebrew
+- Install Fig
+- Update .zshrc
+- Run p10k configure (maybe twice to install meslo font)
+- copy over p10k config file
+- Install nvm (NOT VIA brew!)
+- brew install awscli and copy of config into .aws
+- Copy .gitconfig file
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+### TOKENS
+#see sticky password tool
+export GITHUB_PKG_USER=
+export GITHUB_PKG_TOKEN=
+export NPM_AUTH_TOKEN=
+
+### ALIASES
+alias aws-sso-login='aws sso login --profile NMT-admin && export AWS_PROFILE=NMT-admin'
+alias zshconfig="subl ~/.zshrc"
+alias myrush="rush update && rush install && rush build"
+alias ecs="aws ssm get-parameter --name "/frontend/api.ecs.proxy.basic_password" --with-decryption | jq -r .Parameter.Value | tee >(pbcopy)"
+alias ls="ls -G -g"
+alias cmcf="aws s3 cp s3://up-prod-front-end-configuration-eu-west-1/rawTree/prod/Live/config.json ~/Downloads/cmcf-config.json"
+
+### COMMANDS
+generatepw() {
+  openssl rand -base64 ${1-8}
+}
+
+# Shows the last opened git branches for the current repository
+githist() {
+for i in {1..10}; do
+   branchName=$(git rev-parse --symbolic-full-name @{-$i};)
+   echo "@{-$i} ${branchName}"
+  done
+}
+
+openpr() {
+  git_repo=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/' | cut -d"/" -f 4,5`
+  git_branch=`git symbolic-ref HEAD | cut -d"/" -f 3,4`
+  git_api_url="https://api.github.com/repos/"$git_repo"/pulls"
+  pr_url=`curl -s -X GET -G $git_api_url \
+  -H "Authorization: token <token ghp_>" \
+  -H "Accept: application/vnd.github.v3+json" \
+  -d head=spring-media:$git_branch | jq '.[0].html_url' | tr -d '"'`
+  if [ $pr_url = null ]
+  then
+    echo "No PR Url found. Push first."
+  else
+    print Found GitHub pull request url: $pr_url
+    open $pr_url
+  fi
+}
+
+opengit() {
+  git_repo=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/' | cut -d"/" -f 4,5`
+  git_url="https://github.com/"$git_repo""
+  open $git_url
+}
+
+#zoxide smart cd
+eval "$(zoxide init --cmd j zsh)"
+

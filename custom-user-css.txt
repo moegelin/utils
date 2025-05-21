@@ -1,0 +1,71 @@
+USER CSS Styles
+
+################ GITHUB.com
+/* take full width */
+.enable_better_github_pr .container-xl {
+  max-width: unset;
+}
+.enable_better_github_pr .Layout-main #files {
+  margin-left: 125px !important; 
+}
+
+/* make sticky file-header clickable when scrolled down */
+.sticky-file-header {
+  z-index: 1
+}
+.octicon-git-pull-request-draft {
+  background-color: red !important;
+}
+
+/* change style of single comment button to get used to always start a review instead */
+[name="single_comment"] {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+
+########### local.welt.de
+.c-teaser__headline-link::before {
+  content: unset;
+}
+
+
+############ localhost
+.c-teaser__headline-link::before {
+  content: none;
+}
+
+############ pace.berlin
+[data-outlet="canteen"], [data-filter-outlet="canteen"].active {
+  background: goldenrod !important;
+}
+
+[data-outlet="papa"], [data-filter-outlet="papa"].active {
+  background:  cadetblue !important;
+}
+
+
+########### papyrus
+.page-content.float-content {
+  height: unset;
+  width: 100vw;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+############## s3.console.aws.amazon.com
+.bucket-name[href="/s3/buckets/up-prod-front-end-configuration-eu-west-1?region=eu-west-1"] {
+  color: green;
+}
+
+
+########### welt.de
+.o-teaser__link--is-headline:before {
+  content: none;
+}
+
+.c-teaser__headline-link.is-teaser-link::before {
+  
+  content: none;
+}
