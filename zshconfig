@@ -1,0 +1,178 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$PATH:$HOME/workspace/flutter/bin"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+### Keep command history individual for each tab
+unsetopt inc_append_history
+unsetopt share_history
+
+### TOKENS
+export GITHUB_PKG_USER=moegelin
+export GITHUB_PKG_TOKEN=
+export NPM_AUTH_TOKEN= # can be created by npm login via weltN24 account
+
+### ALIASES
+alias aws-sso-login='aws sso login --profile NMT-admin && export AWS_PROFILE=NMT-admin'
+alias zshconfig="subl ~/.zshrc"
+alias myrush="rush update && rush install && rush build"
+alias ecs="aws ssm get-parameter --name "/frontend/api.ecs.proxy.basic_password" --with-decryption | jq -r .Parameter.Value | tee >(pbcopy)"
+alias ls="ls -G -g"
+alias cmcf="aws s3 cp s3://up-prod-front-end-configuration-eu-west-1/rawTree/prod/Live/config.json ~/Downloads/cmcf-config.json && subl ~/Downloads/cmcf-config.json && open ~/Downloads"
+alias cmcfLocal="aws s3 cp s3://up-test-front-end-configuration-eu-west-1/rawTree/josh/config.json ~/Downloads/cmcf-local-config.json && subl ~/Downloads/cmcf-local-config.json"
+alias channelTree="aws s3 cp s3://up-prod-front-end-configuration-eu-west-1/channelTree/prod/config.json ~/Downloads/channel-tree.json"
+alias ecr-login='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 933782373565.dkr.ecr.eu-west-1.amazonaws.com'
+alias ecr-login-central='aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 933782373565.dkr.ecr.eu-central-1.amazonaws.com'
+
+### COMMANDS
+generatepw() {
+  openssl rand -base64 ${1-8}
+}
+
+# Shows the last opened git branches for the current repository
+githist() {
+  local count=${1:-10}
+  for ((i=1; i<=count; i++)); do
+    local ref="@{-${i}}"
+    branchName=$(git rev-parse --abbrev-ref "$ref" 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      echo "$ref $branchName"
+    else
+      break
+    fi
+  done
+}
+
+# Git checkout branch with fuzzy search
+gitc() {
+local selected=$(git branch -a | sed 's/^[ *]*//' | fzf)
+  if [[ -z "$selected" ]]; then
+    echo "Abgebrochen."
+    return 1
+  fi
+
+  # Branch-Namen normalisieren
+  local branch=${selected#remotes/origin/}
+  branch=${branch#origin/}
+
+  # Wenn der Branch bereits lokal existiert, einfach nur wechseln
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git switch "$branch"
+  else
+    git switch -c "$branch" --track "origin/$branch"
+  fi
+}
+
+openpr() {
+  git_repo=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/' | cut -d"/" -f 4,5`
+  git_branch=`git symbolic-ref HEAD | cut -d"/" -f 3,4`
+  git_api_url="https://api.github.com/repos/"$git_repo"/pulls"
+  pr_url=`curl -s -X GET -G $git_api_url \
+  -H "Authorization: token <token from github>" \
+  -H "Accept: application/vnd.github.v3+json" \
+  -d head=spring-media:$git_branch | jq '.[0].html_url' | tr -d '"'`
+  if [ $pr_url = null ]
+  then
+    echo "No PR Url found. Push first."
+  else
+    print Found GitHub pull request url: $pr_url
+    open $pr_url
+  fi
+}
+
+opengit() {
+  git_repo=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/' | cut -d"/" -f 4,5`
+  git_url="https://github.com/"$git_repo""
+  open $git_url
+}
+
+dbsection() {
+  local key="$1"
+  local clean_key=$(echo "$key" | sed 's#^/##; s#/$##; s#[^a-zA-Z0-9_-]#_#g')
+  local tmpfile="/tmp/dynamo-${clean_key}.json"
+
+  # DynamoDB-Item einmal holen
+  local item=$(aws dynamodb get-item \
+    --region eu-central-1 \
+    --table-name section \
+    --key="{\"path\":{ \"S\": \"$key\" }}")
+
+  # section extrahieren und in JSON wandeln
+  local section_json=$(echo "$item" | jq -r '.Item.section.S' | jq -c '.')
+
+  # stages extrahieren, dekodieren, dekomprimieren
+  local stages_json=$(echo "$item" | jq -r '.Item.stages.B' \
+    | base64 --decode \
+    | gunzip \
+    | jq -c '.stages')
+
+  # Zusammensetzen in neues JSON-Objekt
+  jq -n \
+    --argjson section "$section_json" \
+    --argjson stages "$stages_json" \
+    '{section: $section, stages: $stages}' > "$tmpfile"
+
+  # Öffnen in Sublime und nach Schließen löschen
+  subl --new-window --wait "$tmpfile" && rm "$tmpfile"
+}
+
+#zoxide smart cd
+eval "$(zoxide init --cmd j zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/jmoegeli/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+
+[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
+
+# pnpm
+export PNPM_HOME="/Users/jmoegeli/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
