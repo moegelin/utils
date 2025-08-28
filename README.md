@@ -1,18 +1,22 @@
 # utils
 
 ## Apps
-- maccy (clipboard Manager)
+- maccy (clipboard Manager) - https://drive.google.com/open?id=1IXzUL2mB4lN4IV7_5adfZ0_thy2ARk1f&usp=drive_fs
 - iTerm2 (zsh)
     - oh-my-zsh
     - power10k
     - zsh-autosuggestions
-- Fig (auto completion on zsh)
+- Amazon Q - formerly known as Fig (auto completion on zsh)
 - Alfred 5
 - Rectangle
 - Meeting Bar & Itsycal
 - Charmstone
 - Xnip
 - Dozer (Menu Bar) or Bartender (pay)
+- Insomnia
+  - insominia-plugin-path-parameters   
+- Gifski
+- Time Out (dejal.com - lotus_mud@gmx.de)
 
 ## Aliases
 ```
