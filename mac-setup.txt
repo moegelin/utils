@@ -9,8 +9,8 @@ Steps:
 	```
 - install oh my zsh (make sure this was done right via checking zshrc file)
 - Install zsh auto suggestions manually via git clone
-- Install Zoxide
 - install homebrew
+- Install Zoxide
 - Install Fig
 - Update .zshrc
 - Run p10k configure (maybe twice to install meslo font)

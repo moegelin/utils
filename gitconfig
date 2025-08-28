@@ -1,14 +1,25 @@
-alias.c=checkout
-alias.lg=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-alias.s=status
-alias.pushu=push -u origin HEAD
-alias.c2=checkout @{-2}
-alias.c3=checkout @{-3}
-alias.c4=checkout @{-4}
-alias.c5=checkout @{-5}
-alias.c6=checkout @{-6}
-alias.c7=checkout @{-7}
-alias.c8=checkout @{-8}
-alias.c9=checkout @{-9}
-alias.c10=checkout @{-10}
-alias.r=reset --hard
+# This is Git's per-user configuration file.
+[alias]
+	c = checkout
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	s = status
+	pushu = push -u origin HEAD
+	c2 = checkout @{-2}
+	c3 = checkout @{-3}
+	c4 = checkout @{-4}
+	c5 = checkout @{-5}
+	c6 = checkout @{-6}
+	c7 = checkout @{-7}
+	c8 = checkout @{-8}
+	c9 = checkout @{-9}
+	c10 = checkout @{-10}
+	r = reset --hard
+	mc = merge --continue
+	ma = merge --abort
+[user]
+# Please adapt and uncomment the following lines:
+	name = Josef Mögelin
+	email = josef.moegelin@axelspringer.com
+[core]
+	editor = subl -n -w # new window and wait for return
+	autocrlf = input
