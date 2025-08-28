@@ -1,0 +1,209 @@
+type: collection.insomnia.rest/5.0
+name: BFF API
+meta:
+  id: wrk_19b8d978969545829eb24a88f6cc9b0f
+  created: 1724741679868
+  modified: 1724741679868
+  description: ""
+collection:
+  - url: "{{ _.base_url }}/video/playlist/251647116/beta"
+    name: video/playlist (Revolverload)
+    meta:
+      id: req_7c35609ee56843a4b065e881f64d2b72
+      created: 1724741927517
+      modified: 1737468920107
+      isPrivate: false
+      description: ""
+      sortKey: -1724741927517
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_6d53c542749d4fe88068e6c6e220570e
+      - id: pair_74f182dca5c84fdba38ed8ecee357d36
+        name: x-entitlements
+        value: premium
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/search/:query"
+    name: search
+    meta:
+      id: req_288e741333864a59b8cb265edf092843
+      created: 1737468884602
+      modified: 1747899263141
+      isPrivate: false
+      description: ""
+      sortKey: -1737468884602
+    method: GET
+    parameters:
+      - id: pair_337c99419ec04194afdc2e1372ef4a9c
+        name: restrictBy
+        value: y1
+        description: ""
+        disabled: false
+      - id: pair_bab23a3b5c794dc4acfee0669ed8ed45
+        name: fromDate
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_0fcde42fe643426fa406b042cedb8b5e
+        name: toDate
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_6d0258e8454c4f84beffc3cd0ff2b7a1
+        name: offset
+        value: "0"
+        description: ""
+        disabled: false
+      - id: pair_e2f065e98e3a41be94c9bd0f2503587c
+        name: sort
+        value: date
+        description: ""
+        disabled: false
+      - id: pair_faabd5e627754c5e814577ec5df3b6ca
+        name: type
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_cdd87080c8bb445da623ff341727995a
+        name: section
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_112d310603204a579e790878f8a94cd0
+        name: order
+        value: desc
+        description: ""
+        disabled: true
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: query
+        value: foo
+  - url: https://api.openai.com/v1/embeddings
+    name: OpenAI Embeddings
+    meta:
+      id: req_368e5ca8242b414f869734ccfbf366d8
+      created: 1737470548350
+      modified: 1747899359152
+      isPrivate: false
+      description: ""
+      sortKey: -1737470548350
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"input": "trump",
+        	"dimensions": 1536,
+        	"model": "text-embedding-3-large"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_13f4a6b56b60492399ec9bc3d4e3f983
+      - id: pair_65dc9240dc4f405981e4272bfe6ae358
+        name: Authorization
+        value: Bearer sk-...
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/articles/mlt/article/:id"
+    name: MLT
+    meta:
+      id: req_fe8109a055ad45c3b0ee5145c4473f76
+      created: 1747899150286
+      modified: 1747899308987
+      isPrivate: false
+      description: ""
+      sortKey: -1747899150286
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: 682d71b1591a8020512209c8
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_8943cb50c72dc6679e68680bbe8257ba7553c80c
+    created: 1724741679882
+    modified: 1737470677334
+  cookies:
+    - key: __cf_bm
+      value: oFQGPVfT0J2mWINO1bbaQiV5JRVNi8_mlnNQhAPBqt8-1737470677-1.0.1.1-QjhDcgqlccAqpJjYcX54.RpPIgGApDR8GSb.KfuYN6p2YmmzApleD7PjEm00j.RjY9uvyJw9sq9M2lAojFsQmw
+      domain: api.openai.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: false
+      creation: 2025-01-21T14:44:37.333Z
+      lastAccessed: 2025-01-21T14:44:37.333Z
+      sameSite: none
+      id: 34280208-9100-44e2-854a-9872836c99db
+    - key: _cfuvid
+      value: 8ZCEYt472PqSPlACpRrKv4aYM1PjN2Giz6P.zeTV01Q-1737470677351-0.0.1.1-604800000
+      domain: api.openai.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: false
+      creation: 2025-01-21T14:44:37.334Z
+      lastAccessed: 2025-01-21T14:44:37.334Z
+      sameSite: none
+      id: f1e33633-5579-45a1-a800-a6ca4e5ffee5
+environments:
+  name: Base Environment
+  meta:
+    id: env_8943cb50c72dc6679e68680bbe8257ba7553c80c
+    created: 1724741679881
+    modified: 1724741823612
+    isPrivate: false
+  data:
+    base_url: https://www.welt.de/api
+  subEnvironments:
+    - name: Local
+      meta:
+        id: env_eef942b8bfe34eb1853116c9f0be508e
+        created: 1724741712389
+        modified: 1724742646932
+        isPrivate: true
+        sortKey: 1724741712389
+      data:
+        base_url: https://local.welt.de:4002/api

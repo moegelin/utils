@@ -1,0 +1,735 @@
+type: collection.insomnia.rest/5.0
+name: Content API
+meta:
+  id: wrk_03e4452704e6402fab99da8e7e46af94
+  created: 1692170864098
+  modified: 1692170864098
+  description: ""
+collection:
+  - url: "{{ _.base_url }}/authors"
+    name: /authors
+    meta:
+      id: req_f783da475af74739aab4c08527f37160
+      created: 1690376578592
+      modified: 1754548822043
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689580521230.2266
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: page
+        value: "1"
+        description: ""
+        disabled: false
+      - id: pair_15897cf0f4bb4a18889b053c297851c0
+        name: pageSize
+        value: "200"
+        description: max is 100
+        disabled: false
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: teaser
+        value: 23x11_1440
+        description: Comma separated values with format {ratio}_{width}.
+        disabled: false
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: opener
+        value: 94x35_50
+        description: same as teaser but for opener images
+        disabled: false
+      - id: pair_791ea8d3016a43e29b0d5ee56d075823
+        name: type
+        value: journalist
+        description: ""
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_2fa9f81268bf405d8d724d456aca1c38
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/authors/250209704"
+    name: /authors/{id}
+    meta:
+      id: req_99f4b1f515804b72a75c8cf98ec5962f
+      created: 1690377655543
+      modified: 1754548826435
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689517674596.4023
+    method: GET
+    parameters:
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: teaser
+        value: 23x11_1440
+        description: Comma separated values with format {ratio}_{width}.
+        disabled: true
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: opener
+        value: ""
+        description: same as teaser but for opener images
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_9d66175e9a764863b59f490a0a6218a2
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/authors/130862125/articles"
+    name: /authors/{id}/articles
+    meta:
+      id: req_e78fba044ede4a05af9809e4477dfbed
+      created: 1690377753945
+      modified: 1754548830263
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689486251279.4902
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: page
+        value: "1"
+        description: ""
+      - id: pair_15897cf0f4bb4a18889b053c297851c0
+        name: pageSize
+        value: "22"
+        description: max is 100
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: teaser
+        value: 16x9_1440
+        description: Comma separated values with format {ratio}_{width}.
+        disabled: false
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: opener
+        value: ""
+        description: same as teaser but for opener images
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_d873e4ce818a4f789c520ce6c5d285c4
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/articles"
+    name: /articles
+    meta:
+      id: req_2895d4a7d3c64390a1e1deb2d968f497
+      created: 1690378514301
+      modified: 1755094070463
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689706214497.875
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: ids
+        value: "223190744"
+        description: One or more article IDs
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: teaser
+        value: 23x11_1440,original_2000
+        description: Comma separated values with format {ratio}_{width}.
+        disabled: true
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: opener
+        value: ""
+        description: same as teaser but for opener images
+        disabled: true
+      - id: pair_9102dd7c9a874ae5b0c12fc1967adf57
+        name: inline
+        value: ""
+        description: same as teaser but for body properties with images
+        disabled: true
+      - id: pair_9193bb1a0b1d4afb83f58703723d652b
+        name: relatedCount
+        value: "2"
+        description: ""
+        disabled: true
+      - id: pair_9db4047c5e294146896537d70c8c4ad7
+        name: teaserOnly
+        value: "true"
+        description: ""
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/search"
+    name: /search
+    meta:
+      id: req_4a0ad7a7270a4b8fb73f69549e8718e1
+      created: 1690380445873
+      modified: 1756196085734
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689203441427.2812
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: page
+        value: "1"
+        description: ""
+        disabled: false
+      - id: pair_15897cf0f4bb4a18889b053c297851c0
+        name: pageSize
+        value: "100"
+        description: max is 100
+        disabled: false
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: contentTypes
+        value: article
+        description: article, video, oembed, gallery, out-of-home, author, theme-page,
+          external, live
+        disabled: true
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: excludeContentTypes
+        value: ticker
+        description: article, video, oembed, gallery, out-of-home, author, theme-page,
+          external, live
+        disabled: true
+      - id: pair_4f986d3f7c4e4a11a9165f917ea6f3f1
+        name: contentSubTypes
+        value: advertorial
+        description: ticker, news, satire, opinion, advertorial, column, print, video,
+          broadcast, gallery, external
+        disabled: true
+      - id: pair_2df7be95e4dd4b2ca4574edd46b409fc
+        name: excludeContentSubTypes
+        value: ticker,print
+        description: ticker, news, satire, opinion, advertorial, column, print, video,
+          broadcast, gallery, external
+        disabled: true
+      - id: pair_efac8b3bd5424ad59345de70c2a65ee4
+        name: sections
+        value: /vermischtes/
+        description: paths must start and end with /
+        disabled: true
+      - id: pair_52bae027e3ae4caf80d54a271c8e6445
+        name: excludeHomeSections
+        value: /beta/,/newsticker/,/testgpr/,/homepage-test/,/werbemitteltest/,/werbemitteltest2/,/Advertorials/,/out-of-home/,/andy/,/theresa/,/developer-blog/
+        description: ""
+        disabled: true
+      - id: pair_7477cbc58bc54d6683383239f7d66bc3
+        name: flags
+        value: live
+        description: premium, weltClub, highlight
+        disabled: true
+      - id: pair_f4c4a244b43442ecab7e90e0e8ee8738
+        name: excludeFlags
+        value: premium
+        description: ""
+        disabled: true
+      - id: pair_2a42565255f74bcd8d4ea83cf0ac5827
+        name: publishedAfter
+        value: 2025-08-04T10:00:00.000Z
+        description: ""
+        disabled: true
+      - id: pair_ab0075d7f13e4428a842e11262aff9f4
+        name: publishedBefore
+        value: 2025-08-05T10:00:00.000Z
+        description: ""
+        disabled: true
+      - id: pair_2d09a8e94ccf4da1ab257061e7b7fca3
+        name: anyTags
+        value: thing-5001104-5009104
+        description: at least one of the requested IDs i
+        disabled: false
+      - id: pair_447c63a6aa504d64b9a9f7aa7f0f02de
+        name: allTags
+        value: DFB-Pokal
+        description: all of the requested IDs
+        disabled: true
+      - id: pair_323def7b0aae4554a5ea220d5ae285fa
+        name: excludeTags
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_2d5aea3bddb44d75a5f739d70e0d170c
+        name: teaser
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_ba7374642b0646fcb0650f0a948b0403
+        name: opener
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_4e388d76bdbd4a2fa76b5e980babdbbf
+        name: inline
+        value: ""
+        description: ""
+        disabled: true
+      - id: pair_d195d699331146f5b9d1931e598d8d02
+        name: fields
+        value: webUrl
+        description: ""
+        disabled: true
+      - id: pair_06467a999731430b8a7bdf4f902803b2
+        name: teaserOnly
+        value: "true"
+        description: ""
+        disabled: true
+      - id: pair_bb344601b3a54a40994a1c35f4a0ad48
+        name: excludeIds
+        value: "104542038"
+        description: ""
+        disabled: true
+      - id: pair_723fa10ed70647d79be0203b06c85677
+        name: externalIds
+        value: program-13710515,program-13775659,program-11386254,program-11453133,program-12836356,program-12836335,program-13125876,program-12767517,program-12532344,program-14278264,program-13986941,program-10618637,program-13881520,program-13881633,program-14240290,program-14366412,program-13952725
+        description: ""
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_e1c8d9f6f81b476cbf174cb327d4527d
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/articles/682d71b1591a8020512209c8/mlt"
+    name: /mlt/{id}
+    meta:
+      id: req_1cf9491f7a8940c6bf7bfdeabdddd817
+      created: 1709804199852
+      modified: 1754548838004
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689329134694.9297
+    method: GET
+    parameters:
+      - id: pair_15df05e3f8fe431ba1603a040697a468
+        name: onlyVideo
+        value: "false"
+        description: Comma separated values with format {ratio}_{width}.
+        disabled: false
+      - id: pair_ab9fcf21381444ddb21ff5189a08dd1b
+        name: size
+        value: "10"
+        description: same as teaser but for opener images
+        disabled: false
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_9d66175e9a764863b59f490a0a6218a2
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/themes"
+    name: /themes
+    meta:
+      id: req_c1751a5647f64512a74dbe00eb349484
+      created: 1734679645234
+      modified: 1754548847172
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1688920631575.0723
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: letter
+        value: "#"
+        description: One or more article IDs
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/themes/:id/teasers"
+    name: /themes/{id}/teasers
+    meta:
+      id: req_412f94449dea4041a5a877f8231d131a
+      created: 1736859682027
+      modified: 1740047059849
+      isPrivate: false
+      description: |-
+        Topic Detail Page
+
+        Olaf Scholz: 105212848
+
+        Trump: 119398336
+      sortKey: -1688826361624.336
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: page
+        value: "1"
+        description: One or more article IDs
+        disabled: false
+      - id: pair_58065a3b427148b398e2759c18f78abe
+        name: pageSize
+        value: "50"
+        description: ""
+        disabled: false
+      - id: pair_706215e1acba4ae3a4b1ecc77d5d277d
+        name: ""
+        value: ""
+        description: ""
+        disabled: false
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: "105212848"
+  - url: "{{ _.base_url }}/themes/:topic"
+    name: /themes/{topic}
+    meta:
+      id: req_c347a536db644636b02e4476ed8fb362
+      created: 1740137761145
+      modified: 1756198589461
+      isPrivate: false
+      description: |-
+        Topic Detail Page
+
+        olaf-scholz
+      sortKey: -1688763514990.5117
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: page
+        value: "1"
+        description: One or more article IDs
+        disabled: false
+      - id: pair_58065a3b427148b398e2759c18f78abe
+        name: pageSize
+        value: "5"
+        description: ""
+        disabled: false
+      - id: pair_706215e1acba4ae3a4b1ecc77d5d277d
+        name: ""
+        value: ""
+        description: ""
+        disabled: false
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: topic
+        value: olaf-scholz
+  - url: "{{ _.base_url }}/tracking-reports/:reportName"
+    name: /tracking-reports/{reportName}
+    meta:
+      id: req_c57864b966c4458582b0998ea9d6edc5
+      created: 1748442289360
+      modified: 1754548856708
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1688763514890.5117
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: letter
+        value: y
+        description: One or more article IDs
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: reportName
+        value: api_topic_pages_overview_7d
+  - url: "{{ _.base_url }}/tracking-reports/:reportName/teasers"
+    name: /tracking-reports/{reportName}/teasers
+    meta:
+      id: req_7492b2dd6d724c938ebed6b6b7c4b1dd
+      created: 1748442342280
+      modified: 1754548858631
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1688763514790.5117
+    method: GET
+    parameters:
+      - id: pair_a24b405db08446e7b2ce8bc54c3d790e
+        name: letter
+        value: y
+        description: One or more article IDs
+        disabled: true
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: reportName
+        value: api_topic_pages_overview_7d
+  - url: "{{ _.base_url }}/curation"
+    name: /curation
+    meta:
+      id: req_0d7c36d7b7ed4b8fa79a414a8d0b33c1
+      created: 1754548811163
+      modified: 1754548888432
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689454827962.5781
+    method: GET
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/curation/:section"
+    name: /curation/{section}
+    meta:
+      id: req_53d27384d9f24e7e99e5e9e3b176e642
+      created: 1754548908441
+      modified: 1754548946162
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689391981328.754
+    method: GET
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: section
+        value: frontpage
+  - url: "{{ _.base_url }}/curation/:section/:stage"
+    name: /curation/{section}/{stage}
+    meta:
+      id: req_a77c68fc48064917ad801a860ba50663
+      created: 1754554763129
+      modified: 1754554772844
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689360558011.8418
+    method: GET
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: section
+        value: frontpage
+      - name: stage
+        value: qcu
+  - url: "{{ _.base_url }}/curation/:section/:stage/teasers"
+    name: /curation/{section}/{stage}/teasers
+    meta:
+      id: req_e18c78802a97491790920851019fa563
+      created: 1754554789051
+      modified: 1754554794289
+      isPrivate: false
+      description: Find all authors
+      sortKey: -1689344846353.3857
+    method: GET
+    headers:
+      - id: pair_79551c23bf774bdc8574aaf420ca44cc
+        name: X-Api-Key
+        value: "{{ _.api_key }}"
+        description: ""
+      - id: pair_26afd34b93884130b79a877c82414f3a
+        name: X-Shared-Cache-Key
+        value: "{{ _.shared_cache_key }}"
+        description: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: section
+        value: frontpage
+      - name: stage
+        value: qcu
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ae77968755fd4942a1e4849476b00492
+    created: 1690376222757
+    modified: 1690376222757
+environments:
+  name: Base Environment
+  meta:
+    id: env_3809b76c6b774dbaa8a626de81985720
+    created: 1690376222754
+    modified: 1720691413496
+    isPrivate: false
+  data:
+    base_url: https://www.welt.de/api/queries
+    api_key:
+    shared_cache_key: 490d-8FF8_833c;2f76.3150
+  subEnvironments:
+    - name: local
+      meta:
+        id: env_65cfdedd20c84e009547d7fd6e50e9f5
+        created: 1716900691462
+        modified: 1747899013115
+        isPrivate: false
+        sortKey: 1716900691463
+      data:
+        base_url: http://localhost:8080/api/queries
+        api_key:
+        shared_cache_key: 490d-8FF8_833c;2f76.3150
