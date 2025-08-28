@@ -17,6 +17,9 @@
   - insominia-plugin-path-parameters   
 - Gifski
 - Time Out (dejal.com - lotus_mud@gmx.de)
+- YACReader
+- The Unarchiver
+- Sweet Home 3D
 
 ## Aliases
 ```
